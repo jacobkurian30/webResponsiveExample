@@ -1,0 +1,130 @@
+div{
+    border-color: red;
+}
+a {
+    color: rgb(205,189,135);
+}
+p{
+    color: white;
+}
+html, body {
+    /* don't want gap between title/footer and edge of browser window */
+    margin:0; 
+    padding:0; 
+    background-color: black;
+}
+body {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+h1 {
+    margin:8px;
+    margin-bottom: 0px;
+    text-align: center;
+    color:rgb(254,251,176);
+    font-family: serif;
+}
+#titleNav {
+    min-width: 700px;
+    border-color: red;
+    color:rgb(254,251,176);
+    font-family: serif;
+    height: 79px;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    background:  rgb(29,29,29);     
+
+    background: linear-gradient(rgb(0,0,0), rgb(29,29,29));  
+
+}
+
+#pageTitle {
+    text-align: center;
+    padding-top:10px;
+    padding-left:15px;
+    font-size:45px;
+    font-weight:bold;
+    letter-spacing: 1.5px;
+    text-align:center;
+    float:left;
+    background: -webkit-linear-gradient(rgb(237,216,164), rgb(171,136,57));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;     
+
+}
+
+#nav {
+    padding:29px;
+    font-size:22px;
+    letter-spacing: 1px;
+    font-weight:bold;
+    float:right;
+    text-align:center;
+}
+
+.stopFloat {
+    clear:both;
+}
+#content {
+    margin: 0px 15px; /* 1st is top/bottom, 2nd is left/right */
+    padding:10px;	 
+    padding-top: 100px;
+    background-color: rgb(2,2,2);
+    border-radius: 5px;
+    font-size: 13px;
+}
+#footer {
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+    border-color: red;
+    z-index: 2;
+    position: fixed;
+    left:0px;
+    bottom: 0px;
+    width: 100%;
+    height: 7%;
+    background:  rgb(29,29,29);         
+    background: linear-gradient(rgb(0,0,0), rgb(29,29,29));     
+}
+img {
+    width: 100%;
+    border-radius: 5px;
+    align:center;
+}
+.span33 {
+    width: 100%;
+    float: left;
+    margin-right: 10px;
+}
+.navigation{
+    text-decoration: none;
+    color: rgb(254,251,176);
+    background-color: red;    
+    appearance: button;
+    border-radius: 5px 5px 5px 5px;
+
+}
+.navigation:hover{
+    background-color: chocolate; 
+    border-radius: 1px 1px 1px 1px;    
+    color: black;
+
+}
+
+#container{
+    min-width: 700px;
+    margin-bottom: 5%;
+}
+.tableImages{
+    border-radius: 100px 100px 100px 100px;
+    transition: width 2s, height 4s;
+}
+.tableImages:hover{
+    width: 300px;
+    height: 300px;
+}
+#photoTitle{
+    font-weight: bold;
+}

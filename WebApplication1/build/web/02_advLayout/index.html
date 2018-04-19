@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- It's good practice for modern web design to include these meta tags  -->
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="./pics/logo.ico">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Pirate Of Caribbean</title>
+
+        <style type="text/css">
+
+
+
+            html, body {
+                margin: 0;  /* remove any default spacing */
+                padding: 0; /* remove any default spacing */
+                min-width: 320px; /* don't want to the page titles to wrap */
+            }
+            h1 { /* "hero style" page titles */
+                font-size: 3.0em; 
+            }
+            #nav {  
+                /* without this there is space above the nav bar */
+                margin-top: 0px; 
+            }
+            .handle{
+                width: 100%;
+                background:  #005c48;
+                text-align:right;
+                box-sizing: border-box;
+                padding: 15px 10px;
+                cursor: pointer;
+                color: white;
+                margin: 0px;
+                display: none;
+            }
+            @media screen and (min-width: 600px) {
+                nav{
+                    margin-top: 0px; 
+                    background: none;
+                    position:fixed;
+                    top:0px;
+                    right:0px;
+                    border:0;
+                    padding: 5px;
+                    font-size:18px;
+                    font-weight:bold;
+                    margin-right:0px;
+                    z-index:2;
+                    background-color:#43a286;
+                    line-height: 0px;
+
+
+                }
+                nav ul{
+                    background-color:#43a286;
+                    overflow: hidden;
+                    color:white;
+                    padding:0;
+                    text-align: center;
+                    //margin:0;
+                    transition: max-height 0.4s;
+
+                    // -webkit-transition: max-height 0.4s;
+                    // -ms-transition: max-height 0.4s;
+                    -moz-transition: max-height 0.4s;
+
+                }
+                nav ul li{
+                    display: inline-block;
+                    padding: 20px;
+
+                }
+                a{
+                    text-decoration: none;
+                    color:inherit;
+                }
+                nav ul li:hover{
+                    background-color: #399077;
+                }
+
+            }
+            @media screen and (max-width: 599px){
+                nav{
+                    background-color:#43a286;
+                }
+                nav ul {
+                    max-height: 0;
+                }
+                .showing{
+                    max-height: 20em;
+                }
+                .handle{
+                    display: block;
+                }
+                nav{
+                    margin-top: 0px; 
+                    position:fixed;
+                    top:0px;
+                    right:0px;
+                    padding: 0px;
+                    font-size:18px;
+                    font-weight:bold;
+                    z-index:2;
+
+                }
+                nav ul{
+                    background-color:#43a286;
+                    overflow: hidden;
+                    color:white;
+                    padding:0;
+                    text-align: center;
+
+                }
+                nav ul li{
+                    padding: 20px;
+                    list-style-type: none;
+
+                }
+                a{
+                    text-decoration: none;
+                    color:inherit;
+                }
+                nav ul li:hover{
+                    background-color: #399077;
+                    box-sizing: border-box;
+                }     
+
+
+            }
+
+            .sng-page {
+                border: solid;
+                min-height: 500px; /* fallout for older browsers */
+                min-height: 100vh;
+                max-width: 100%;
+                padding: 0px 1.0em;   /* top/bottom   then   left/right */
+                padding-bottom: 56px; /* height of footer, make space for fixed footer */
+                border-top: 1px solid blue; /* page divider */
+            }
+
+            #footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                z-index: 2;
+                width: 100%;
+                background-color: black;
+                color:#CCCCCC;
+                letter-spacing: 0.1ex;
+                text-align: center;
+                font-weight: bold;
+                font-size: 18px;
+                padding: 12px;
+            }
+            #footer a {
+                text-decoration: none;
+                color:#CCCCCC;
+            }
+            #footer a:hover {
+                color: white;
+            }
+            /* colors to differentiate the pages */
+            #page1 {
+                background-color: rgb(226,209,153);
+                padding-right: 10px;
+            }
+            #page2 {
+                background-color: lightyellow;
+            }
+            #page3 {
+                background-color: rgb(255,165,0);
+            }
+
+
+
+            /* ------------ Mobile and Common Styles --------------- */
+            .container {
+                width: 100%;
+                box-sizing: border-box; /* gets rid of horizontal scroll bar, counts padding and border in box size */
+                /* border:thin solid blue; */
+            }
+
+            .pageTitle {
+                padding: 10px 15px; /* 1st is top/bottom, 2nd is left/right */
+                background-color: gold;
+                color: black;
+                margin-bottom: -3px; /* cover up white space between title and content */
+                font-size: 1.3em;
+                text-align: center;
+                border: thin;
+                box-shadow: 2px 12px 2px #888888; // first up/down second left/right third opacity
+            }
+
+            .one-to-three {
+                border:thin solid red; 
+                width: 100%;
+                padding: 15px;
+                background-color: #334411;
+                color: white;
+                margin: 5px 0%;  /* 1st is top/bottom, 2nd is left/right */
+                box-sizing: border-box; /* gets rid of horizontal scroll bar, counts padding and border in box size */
+            }
+            #introContent{
+                width: 100%;
+                background-color: #000000;
+                color: rgb(199,163,47);
+                padding: 10px 10px;
+                margin: 5px 0%;  /* 1st is top/bottom, 2nd is left/right */
+                box-sizing: border-box; /* gets rid of horizontal scroll bar, counts padding and border in box size */
+            }
+            #welcomeImg img{
+                width: 100%;
+            }
+
+
+            /* ------------ media Query Desktop Only Styles --------------- */
+            @media screen and (min-width: 600px) {
+
+                #container {
+                    background-color:  #334411;
+                    padding: 0px 15px;
+                }
+
+                .one-to-three {
+                    background-color: #334411;
+                    padding: 5px 15px; /* 1st is top/bottom, 2nd is left/right */
+                    width: 32.3%;
+                    margin: 0px 0.5%;  /* make the width of the 3 elements plus margins total 100% */
+                    border: solid;
+                    float: left;
+                    border-color: #000000;
+                    min-height: 580px;
+                }
+
+                .clear {
+                    clear:both;
+                }
+
+
+            }
+
+            @media screen and (min-width: 600px){         
+                #page1 {
+                    background-color: rgb(226,209,153);
+                    padding-right: 30px;
+                }
+
+                #introContent{                   
+                    padding-right: 10px;
+                    min-height: 70vh;
+                    color: rgb(210,183,111);
+                }
+                #welcomeImg{
+                    width: 35%;
+                    margin-right: 10px;
+                }
+                #welcomeImg img{
+                    width: 100%;
+                    height: 70vh;
+                }
+
+
+                .one-to-one{
+                    float: left;
+                }
+                .clear {
+                    clear:both;
+                }
+
+
+
+
+            }
+            form {
+                background-color: rgb(40,124,120);
+                border: thin solid black; 
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-bottom: 5px;
+                margin:auto;
+                width:80%;
+                line-height: 1.75em;
+                color:white;
+                font-family: serif; 
+
+
+            }
+            .formTex {
+                width:98%;
+                border-radius: 50em 50em 50em 50em;
+                display: inline-block;
+            }
+
+            .formText {
+                width:100%;
+                border-radius: 4px;
+                border: none;
+                padding: 10px;
+                box-sizing: border-box;                
+            }
+            /* 
+            This is style for required box.            
+            */
+            required:focus{
+                box-shadow: 3px  3px 3px rgba(255,0,0,0.5); 
+                //border-color: blue;
+            }
+
+        </style>
+    </head>
+    <body>
+
+
+
+
+        <!-- Page 1 -->
+        <div id="page1" class="sng-page">
+            <nav>
+                <ul>
+                    <li><a href="http://cis-linux2.temple.edu:8080/sp17_3344_1_tue54888/labs.html">Labs</a></li>
+                    <li><a href="#page1">Landing Page</a></li>
+                    <li><a href="#page2">Detail Page</a></li>
+                    <li><a href="#page3">Form Page</a></li>
+
+                </ul>
+                <button class="handle">Menu 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp;&#9776;</button>
+
+            </nav>
+            <h1>Home</h1>     
+            <div class="container">
+                <div id="welcomeImg" class="one-to-one">
+                    <center>
+                        <img src="./pics/pirate.jfif" alt="pirate">
+                    </center>
+                </div>
+
+                <div id="introContent">
+                    <h2>Pirates of Caribbean</h2>
+                    <p>Dead Men Tell No Tales</p> 
+                    <p>Johnny Depp returns to the big screen as the iconic,
+                        swashbuckling anti-hero Jack Sparrow in the all-new 
+                        “Pirates of the Caribbean: Dead Men Tell No Tales.”
+                        The rip-roaring adventure finds down-on-his-luck
+                        Captain Jack feeling the winds of ill-fortune 
+                        blowing strongly his way when deadly ghost sailors,
+                        led by the terrifying Captain Salazar (Javier Bardem),
+                        escape from the Devil's Triangle bent on killing 
+                        every pirate at sea—notably Jack. Jack's only hope
+                        of survival lies in the legendary Trident of Poseidon,
+                        but to find it he must forge an uneasy alliance with
+                        Carina Smyth (Kaya Scodelario), a brilliant and beautiful
+                        astronomer, and Henry (Brenton Thwaites), a headstrong
+                        young sailor in the Royal Navy. At the helm of the 
+                        Dying Gull, his pitifully small and shabby ship, 
+                        Captain Jack seeks not only to reverse his recent
+                        spate of ill fortune, but to save his very life from
+                        the most formidable and malicious foe he has ever faced. </p>
+                </div>
+
+                <div class="clear"></div>
+            </div> <!-- end container -->
+
+
+
+
+        </div>
+
+        <!-- Page 2 -->
+        <div id="page2" class="sng-page">
+            <h1>Movies</h1>
+
+            <div class="pageTitle">
+                <h3>Film Series<br/><span style="font-size:0.6em;"> -&nbsp;Learn More about your favorite movies &nbsp;&nbsp;!</span></h3> 
+            </div> <!-- end pageTitle -->
+
+            <div class="container">
+
+                <div class="one-to-three">
+                    <center>
+
+                        <h3>The Curse of the Black Pearl</h3>
+                        <img src="pics/pirate1.jfif" alt="" style="width:40%;height:80%;" >
+                    </center>
+                    <p> Release Date: July 9, 2003 </p>
+                    <p>The roguish yet charming Captain Jack Sparrow's 
+                        idyllic pirate life capsizes after his nemesis, 
+                        the wily Captain Barbossa, steals his ship, 
+                        the Black Pearl, and later attacks the town of 
+                        Port Royal, kidnapping the governor's beautiful
+                        daughter Elizabeth. In a gallant attempt to
+                        rescue her and recapture the Black Pearl,
+                        Elizabeth's childhood friend Will Turner joins
+                        forces with Jack.What Will doesn't know is that 
+                        a cursed treasure has doomed Barbossa and his
+                        crew to live forever as the undead..</p>
+                </div>
+
+                <div class="one-to-three">
+                    <center>
+                        <h2>Dead Man's Chest</h2>
+                        <img src="pics/pirate2.jfif" alt="" style="width:40%;height:80%;">
+                    </center>
+                    <p>Release Date: July 7, 2006</p> 
+                    <p>Charming rogue pirate Captain Jack Sparrow is
+                        back for a grand, swashbuckling, nonstop
+                        joyride filled with devilish pirate humor,
+                        monstrous sea creatures and breathtaking
+                        black magic. Now, Jack's got a blood debt
+                        to pay; he owes his soul to the legendary
+                        Davy Jones, ghostly Ruler of the Ocean 
+                        Depths, but ever-crafty Jack isn't about
+                        to go down without a fight.</p>
+                </div>
+
+                <div class="one-to-three">
+                    <center>
+                        <h2>At World's End</h2>
+                        <img src="pics/pirate3.jfif" alt="" style="width:40%;height:80%;">
+                    </center>
+
+                    <p>Release Date: May 25, 2007</p>
+                    <p>Just when he's needed most, Captain Jack Sparrow,
+                        that witty and wily charmer of a pirate, is
+                        trapped on a sea of sand in Davy Jones' Locker.
+                        In an increasingly shaky alliance, Will Turner,
+                        Elizabeth Swann and Captain Barbossa begin a
+                        desperate quest to find and rescue him.
+                        Captain Jack's the last of the nine Pirate Lords
+                        of the Brethren Court who must come together
+                        united in one last stand to preserve the
+                        freedom-loving pirates' way of life.</p>
+                </div>
+
+                <div class="clear"></div>
+
+            </div> <!-- end container -->
+        </div>
+
+        <!-- Page 3 -->
+        <div id="page3" class="sng-page">
+            <h1>Win A Ticket</h1>
+            <form  name="myForm" method="post" action="http://www.temple.edu/cgi-bin/mail?tue54888@temple.edu">
+                <h3>Win a free Premiere Show Ticket</h3>
+                <label for="name"> What is Your Name?</label>  <br/> 
+                <input class="formText" type="text" required="" name="userName" placeholder="Jacob Kurian"/>   <br/>
+                <label for="age">Age </label>
+                <input type="number" class="formText" required="" name="age"><br/>
+                Address  <br/> <input class="formText" type="text" name="address" required=""  placeholder="example@gmail.com"/>   <br/>
+
+                What is your Sex? <br/>  
+                <input type="radio" name="userSex" value="M"  required=""/>   Male    
+                <input type="radio" name="userSex"  value="F"  />    Female  <br/> 
+
+
+                <br/>
+
+                <label for="movies">
+                    Have you watched all other movies in this series? <br/>               
+                    <select  name="watchedMovies" required>
+                        <option value="yes" >Yes</option>
+                        <option  value="no">No</option>
+                        <option  value="" selected="selected">Choose</option>
+                    </select> 
+                    <br/>
+
+                    <label for="state">What is your state? <br/>
+                        <select required  name="state" >
+                            <option name="state" value="AL" >Alabama</option>
+                            <option name="state" value="AK">Alaska</option>
+                            <option name="state" value="AZ">Arizona</option>
+                            <option name="state" value="AR" >Arkansas</option>
+                            <option name="state" value="CA">California</option>
+                            <option name="state" value="CO">Colorado</option>
+                            <option name="state" value="CT" >Connecticut</option>
+                            <option name="state" value="DE">Delaware</option>
+                            <option name="state" value="FL">Florida</option>
+                            <option name="state" value="GA" >Georgia</option>
+                            <option name="state" value="HI">Hawaii</option>
+                            <option name="state" value="ID">Idaho</option>
+                            <option name="state" value="IL" >Illinois</option>
+                            <option name="state" value="IN" >Indiana</option>
+                            <option name="state" value="IA" >Iowa</option>
+                            <option name="state" value="KS">Kansas</option>
+                            <option name="state" value="KY">Kentucky</option>
+                            <option name="state" value="LA">Louisiana</option>
+                            <option name="state" value="ME">Maine</option>
+                            <option name="state" value="MD" >Maryland</option>
+                            <option name="state" value="MA">Massachusetts</option>
+                            <option name="state" value="MI">Michigan</option>
+                            <option name="state" value="MN" >Minnesota</option>
+                            <option name="state" value="MS">Mississippi</option>
+                            <option name="state" value="MO">Missouri</option>
+                            <option name="state" value="MT" >Montana</option>
+                            <option name="state" value="NE">Nebraska</option>
+                            <option name="state" value="NV">Nevada</option>
+                            <option name="state" value="NH" >New Hampshire</option>
+                            <option name="state" value="NJ">New Jersey</option>
+                            <option name="state" value="NC">North Carolina</option>
+                            <option name="state" value="ND">North Dakota</option>          
+                            <option name="state" value="OH">Ohio</option>
+                            <option name="state" value="OK">Oklahoma</option>
+                            <option name="state" value="OR" >Oregon</option>
+                            <option name="state" value="PA">Pennsylvania</option>
+                            <option name="state" value="RI">Rhode Island</option>
+                            <option name="state"  value="SC" >South Carolina</option>
+                            <option name="state" value="SD">South Dakota</option>
+                            <option name="state" value="TN">Tennessee</option>
+                            <option name="state" value="TX" >Texas</option>
+                            <option name="state" value="UT">Utah</option>
+                            <option name="state" value="VT">Vermont</option>
+                            <option name="state" value="VA" >Virginia</option>
+                            <option name="state" value="WA">Washington</option>
+                            <option name="state" value="WV">West Virginia</option>
+                            <option name="state" value="WI">Wisconsin</option>
+                            <option name="state" value="WY">Wyoming</option>
+                            <option value="" selected="selected">Choose</option>
+                        </select>     <br/> 
+
+                        <label  for="dob">Date of Birth: <br/></label>
+                        <input required="" name="dob" type="date" value="" placeholder="mm-dd-yyyy"/> <br/><br/>
+
+                        Comments or Suggestions? (optional) <br/>
+                        <textarea class="formText" name="inputcomments"  >Type your comments here</textarea> <br/> <br/>
+                        <input type="checkbox" name="agreement" value="Yes" required="" /> 
+                        <span font-size="0.6em" >
+                            I agree that all the information provided above is legitimate according to my knowledge.
+                        </span>
+                        <br/>
+                        <input type="submit" value="Click Here" />
+
+                        </form>
+                        </div>
+
+                        <footer id="footer">
+                            &copy;  Jacob Kurian
+                        </footer>
+
+                        <!-- JQuery -->
+
+                        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                                $('a[href^="#"]').click(function() {
+                                    console.log("this");
+                                    console.log(this);
+                                    console.log("-");
+                                    console.log("this.hash");
+                                    console.log(this.hash);
+                                    console.log("-");
+                                    var target = $(this.hash);
+                                    console.log("$(this.hash)");
+                                    console.log(target);
+                                    console.log("-");
+                                    if (target.length) {
+                                        $('html, body').animate({
+                                            scrollTop: target.offset().top
+                                        }, 900);
+                                    }
+                                });
+                            });
+
+
+
+
+                        </script>
+
+                        <script>
+                            $('.handle').on('click', function() {
+                                $('nav ul').toggleClass('showing');
+                            });
+
+                        </script>
+
+                        </body>
+                        </html>
+
+
+
